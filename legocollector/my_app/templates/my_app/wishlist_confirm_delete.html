@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="page-header">
+    <h1>Delete from wishlist?</h1>
+</div>
+<h2>Are you sure you want to delete this {{object.name}}?</h2>
+<form action="" method="post" class="form">
+    {% csrf_token %}
+    <a class="btn secondary" href="{% url 'wishlist-detail' wishlist.id %}">Cancel</a>
+    <button type="submit" class="btn danger">Yes - delete!</button>
+</form>
+
+{% endblock %}

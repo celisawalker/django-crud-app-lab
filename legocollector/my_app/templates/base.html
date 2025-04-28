@@ -15,10 +15,27 @@
   <body>
     <header>
       <div class="header-logo-container">
+        <a href="/"><h1>The Lego Collector App</h1></a>
       </div>
       <nav>
         <ul>
-            
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'lego-index' %}">My Sets</a></li>
+            <li><a href="{% url 'lego-create' %}">Add a Set</a></li>
+            <li><a href="{% url 'wishlist-create' %}">Add to Wishlist</a></li>
+            <li><a href="{% url 'wishlist-index' %}">View Wishlist</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li>
+                <form action="{% url 'logout' %}" id="logout-form" method="post">
+                  {% csrf_token %}
+                  <button type="submit">Logout</button>
+                </form>
+              </li>
+              {% else %}
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'home' %}">Login</a></li>
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            {% endif %}
         </ul>
       </nav>
     </header>
